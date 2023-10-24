@@ -1,5 +1,6 @@
 import { Navbar as NavbarBs, Nav, Container, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 const styles: { [key: string]: React.CSSProperties } = {
   badge: {
@@ -11,14 +12,21 @@ const styles: { [key: string]: React.CSSProperties } = {
     transform: "translate(25%, 25%)",
   },
   button: { width: "3rem", height: "3rem", position: "relative" },
+  brand: { width: "30px", marginRight: "0.5rem" },
 };
 
 function Navbar() {
+  const { cartQuantity, openCart } = useShoppingCart();
   return (
     <NavbarBs sticky="top" expand="sm" className="bg-white shadow-sm mb-3">
       <Container>
-        <NavbarBs.Brand as={NavLink} to="/">
-          My Shopping List
+        <NavbarBs.Brand
+          as={NavLink}
+          to="/"
+          className="d-flex align-items-center"
+        >
+          <img src="./shopify.png" style={styles.brand} />
+          Shopify
         </NavbarBs.Brand>
         <NavbarBs.Toggle aria-controls="basic-navbar-nav" />
         <NavbarBs.Collapse id="basic-navbar-nav">
@@ -37,14 +45,18 @@ function Navbar() {
             style={styles.button}
             variant="outline-primary"
             className="rounded-circle"
+            onClick={openCart}
+            disabled={cartQuantity === 0}
           >
             <img src="./shoppingcart.svg" />
-            <div
-              className="rounded-circle bg-danger text-white text-center"
-              style={styles.badge}
-            >
-              3
-            </div>
+            {cartQuantity > 0 ? (
+              <div
+                className="rounded-circle bg-danger text-white text-center"
+                style={styles.badge}
+              >
+                {cartQuantity}
+              </div>
+            ) : null}
           </Button>
         </NavbarBs.Collapse>
       </Container>
