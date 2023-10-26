@@ -1,4 +1,5 @@
 import { Stack } from "react-bootstrap";
+import { useStoreItems } from "../context/StoreItemsContext";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { RxCross2 } from "react-icons/rx";
@@ -20,7 +21,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     height: "20px",
     color: "white",
     borderRadius: "50%",
-    backgroundColor: "red",
+    backgroundColor: "#727272",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -32,12 +33,9 @@ const styles: { [key: string]: React.CSSProperties } = {
 };
 
 const CartItem = ({ id, quantity }: CartItemProps) => {
-  const {
-    increaseItemQuantity,
-    decreaseItemQuantity,
-    removeFromCart,
-    storeItems,
-  } = useShoppingCart();
+  const { increaseItemQuantity, decreaseItemQuantity, removeFromCart } =
+    useShoppingCart();
+  const { storeItems } = useStoreItems();
 
   const item = storeItems.find((item) => item.id === id);
   if (!item) return null;

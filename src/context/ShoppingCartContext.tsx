@@ -1,8 +1,6 @@
 import { createContext, useContext, useReducer, useState } from "react";
-import storeItems from "../data/items.json";
 
 type ShoppingCartContextType = {
-  storeItems: StoreItem[];
   cartItems: CartItem[];
   cartQuantity: number;
   getItemQuantity: (id: number) => number;
@@ -12,13 +10,6 @@ type ShoppingCartContextType = {
   isOpen: boolean;
   openCart: () => void;
   closeCart: () => void;
-};
-
-export type StoreItem = {
-  id: number;
-  name: string;
-  price: number;
-  imgUrl: string;
 };
 
 type CartItem = {
@@ -73,7 +64,6 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   return (
     <ShoppingCartContext.Provider
       value={{
-        storeItems,
         cartItems,
         cartQuantity,
         getItemQuantity,

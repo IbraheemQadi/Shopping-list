@@ -1,9 +1,9 @@
 import { Col, Row } from "react-bootstrap";
 import StoreItem from "../components/StoreItem";
-import { useShoppingCart } from "../context/ShoppingCartContext";
+import { useStoreItems } from "../context/StoreItemsContext";
 
 const Store = () => {
-  const { storeItems } = useShoppingCart();
+  const { storeItems } = useStoreItems();
   return (
     <>
       <h1>Store</h1>

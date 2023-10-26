@@ -1,9 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import { formatCurrency } from "../utilities/formatCurrency";
-import {
-  useShoppingCart,
-  StoreItem as StoreItemType,
-} from "../context/ShoppingCartContext";
+import { useShoppingCart } from "../context/ShoppingCartContext";
+import { StoreItem as StoreItemType } from "../context/StoreItemsContext";
 
 const styles: { [key: string]: React.CSSProperties } = {
   cardImg: { height: "220px", objectFit: "cover" },
